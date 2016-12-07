@@ -41,7 +41,7 @@ public class ClientBuilder {
         String adresse = getValeurChamp( request, CHAMP_ADRESSE );
         String telephone = getValeurChamp( request, CHAMP_TELEPHONE );
         String email = getValeurChamp( request, CHAMP_EMAIL );
-        String sDateDeNaissance = getValeurChamp( request, CHAMP_DATEDENAISSANCE );
+        Date DateDeNaissance = (Date) request.getAttribute( CHAMP_DATEDENAISSANCE );
         String password = getValeurChamp( request, CHAMP_PASSWORD );
         String passwordConfirm = getValeurChamp( request, CHAMP_CONFIRMPASSWORD );
 
@@ -82,12 +82,12 @@ public class ClientBuilder {
             setErreur( CHAMP_EMAIL, e.getMessage() );
         }
 
-        try {
-            validDateDeNaissance( sDateDeNaissance );
-            client.setDateDeNaissance( stringToDate( sDateDeNaissance ) );
-        } catch ( Exception e ) {
-            setErreur( CHAMP_DATEDENAISSANCE, e.getMessage() );
-        }
+        // try {
+        // validDateDeNaissance( sDateDeNaissance );
+        client.setDateDeNaissance( DateDeNaissance );
+        // } catch ( Exception e ) {
+        // setErreur( CHAMP_DATEDENAISSANCE, e.getMessage() );
+        // }
         try {
             validPassword( password, passwordConfirm );
             client.setPassword( encryptorRemote.encrypt( password ) );
@@ -101,7 +101,7 @@ public class ClientBuilder {
     }
 
     private void validNom( String nom ) throws Exception {
-        if ( !nom.isEmpty() ) {
+        if ( nom != null ) {
             if ( !nom.matches( "^[a-zA-Z0-9 éèàçâêîôû]{3,20}$" ) )
                 throw new Exception( "Nom incorrect. Format : a-z, A-Z, 3 à 20 caractères." );
         } else {
@@ -110,7 +110,7 @@ public class ClientBuilder {
     }
 
     private void validPrenom( String prenom ) throws Exception {
-        if ( !prenom.isEmpty() ) {
+        if ( prenom != null ) {
             if ( !prenom.matches( "^[a-zA-Z0-9 éèàçâêîôû]{3,20}$" ) )
                 throw new Exception( "Prénom incorrect. Format : a-z, A-Z, 3 à 20 caractères." );
         } else {
@@ -119,7 +119,7 @@ public class ClientBuilder {
     }
 
     private void validAdresse( String adresse ) throws Exception {
-        if ( !adresse.isEmpty() ) {
+        if ( adresse != null ) {
             if ( !adresse.matches( "^[A-Za-z0-9- éèàçâêîôû ',]{10,150}$" ) )
 
                 throw new Exception( "L'adresse est incorrecte" );
@@ -182,7 +182,7 @@ public class ClientBuilder {
             date = formatter.parse( sDate );
         } catch ( ParseException e ) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            setErreur( CHAMP_DATEDENAISSANCE, e.getMessage() );
         }
         return date;
 

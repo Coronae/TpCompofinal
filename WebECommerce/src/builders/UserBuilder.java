@@ -12,44 +12,51 @@ import remote.EncryptorRemote;
 
 public class UserBuilder {
 
-    private static final String CHAMP_EMAIL = "email";
-    private static final String CHAMP_PASS  = "motdepasse";
+    public static final String  CHAMP_EMAIL = "emailUser";
+    public static final String  CHAMP_PASS  = "passwordUser";
 
     @EJB
     private EncryptorRemote     encryptorRemote;
 
     private Map<String, String> erreurs     = new HashMap<String, String>();
 
-    public User inscrireUser( HttpServletRequest request, Client client ) {
+    public UserBuilder() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+    public User createUser( HttpServletRequest request, Client client ) {
         String email = getValeurChamp( request, CHAMP_EMAIL );
-        String pwd = encryptorRemote.encrypt( getValeurChamp( request, CHAMP_PASS ) );
+        String pwd = getValeurChamp( request, CHAMP_PASS );
 
         User user = new User();
 
-        try {
-            validationEmail( email, client.getEmail() );
-            user.setEmail( email );
-        } catch ( Exception e ) {
-            setErreur( CHAMP_EMAIL, e.getMessage() );
+        if ( client != null ) {
+
+            try {
+                validationEmail( email );
+                user.setEmail( email );
+            } catch ( Exception e ) {
+                setErreur( CHAMP_EMAIL, e.getMessage() );
+            }
+
+            try {
+                encryptorRemote.encrypt( pwd );
+                validationMotDePasse( pwd, client.getPassword() );
+                user.setPWD( pwd );
+            } catch ( Exception e ) {
+                setErreur( CHAMP_PASS, e.getMessage() );
+
+            }
+            user.setID( client.getID() );
+        } else {
+            this.setErreur( CHAMP_EMAIL, "Client introuvable." );
         }
-
-        try {
-            validationMotDePasse( pwd, client.getPassword() );
-            user.setPWD( pwd );
-        } catch ( Exception e ) {
-            setErreur( CHAMP_PASS, e.getMessage() );
-
-        }
-
         return user;
     }
 
-    private void validationEmail( String email, String clientEmail ) throws Exception {
+    private void validationEmail( String email ) throws Exception {
         if ( email != null ) {
-            if ( !email.matches( "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)" ) ) {
-                throw new Exception( "Merci de saisir une adresse mail valide." );
-            }
-        } else {
             throw new Exception( "Merci de saisir une adresse mail." );
         }
     }
@@ -63,10 +70,6 @@ public class UserBuilder {
             throw new Exception( "Merci de renseigner un mot de passe." );
         }
     }
-
-    /*
-     * Ajoute un message correspondant au champ spécifié à la map des erreurs.
-     */
 
     private static String getValeurChamp( HttpServletRequest request, String nomChamp ) {
         String valeur = request.getParameter( nomChamp );

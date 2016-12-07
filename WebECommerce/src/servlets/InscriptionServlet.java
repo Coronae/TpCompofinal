@@ -20,7 +20,7 @@ public class InscriptionServlet extends HttpServlet {
     private static final String ATT_CLIENT       = "client";
     private static final String ATT_ERREURS      = "form";
 
-    private static final String VUE_FORM         = "/WEB-INF/inscriptionBootstrap.jsp";
+    private static final String VUE_FORM         = "/WEB-INF/inscription.jsp";
     private static final String VUE_SUCCES       = "/WEB-INF/inscriptionValid.jsp";
 
     private Client              client;

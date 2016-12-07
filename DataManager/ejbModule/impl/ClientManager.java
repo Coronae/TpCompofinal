@@ -43,12 +43,29 @@ public class ClientManager implements ClientManagerRemote {
     }
 
     @Override
+    public Client getClientFromEmail( String email ) {
+        StringBuilder sbQuery = new StringBuilder( SELECT_QUERY );
+        Query query;
+        Client client = null;
+        if ( email != null ) {
+            try {
+                query = em.createQuery( sbQuery.append( "c.email = " ).append( email ).toString() );
+                client = (Client) query.getSingleResult();
+            } catch ( Exception e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return client;
+    }
+
+    @Override
     public void remove( long ID ) {
         StringBuilder sbQuery = new StringBuilder( SELECT_QUERY );
         Query query = em.createQuery( sbQuery.append( "c.ID = " ).append( ID ).toString() );
         Client client = (Client) query.getSingleResult();
         try {
-            em.remove( client );
+            em.remove( em.merge( client ) );
         } catch ( Exception e ) {
             // TODO Auto-generated catch block
             e.printStackTrace();

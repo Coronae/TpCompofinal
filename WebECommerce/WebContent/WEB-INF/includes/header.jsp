@@ -40,14 +40,14 @@
 										<div class="text-center">Connexion</div>
 									</li>
 									<li role="separator" class="divider"></li>
-									<li><input id="emailClient" name="emailClient" type="text"
+									<li><input id="emailClient" name="emailUser" type="text"
 										placeholder="Uname or Email" onclick="return false;"
 										class="form-control input-sm"></li>
-									<li><input id="passwordClient" name="passwordClient"
+									<li><input id="passwordClient" name="passwordUser"
 										type="password" placeholder="Password"
 										class="form-control input-sm" name="password"></li> <span
-										class='inline-block highlight-error'>${form.erreurs['emailClient']}</span>
-									<span class='inline-block highlight-error'>${form.erreurs['passwordClient']}</span>
+										class='inline-block highlight-error'>${formUser.erreurs['emailUser']}</span>
+									<span class='inline-block highlight-error'>${formUser.erreurs['passwordUser']}</span>
 									<br>
 									<li>
 										<div class="text-center">
@@ -64,7 +64,7 @@
 							</form>
 					</c:when>
 					<c:otherwise>
-						<a href="#"><button class="btn btn-error">Déconnexion</button>
+						<button class="btn btn-error" action="Deconnexion">Déconnexion</button>
 					</c:otherwise>
 				</c:choose>
 			</ul>

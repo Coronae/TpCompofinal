@@ -18,4 +18,6 @@ public interface ClientManagerRemote {
 
     public List<Client> find( Map<String, String> tabProps );
 
+    Client getClientFromEmail( String email );
+
 }

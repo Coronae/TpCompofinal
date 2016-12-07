@@ -1,0 +1,9 @@
+1479896395962	Rename type 'Item'
+1479896730288	Rename type 'ItemIpl'
+1479896896926	Delete element
+1480097150265	Rename type 'ClientRemote'
+1480097155093	Rename type 'CommandRemote'
+1480097161265	Rename type 'ItemRemote'
+1480097165845	Rename type 'ClientImpl'
+1480097171275	Rename type 'CommandImpl'
+1480097176632	Rename type 'ItemImpl'

@@ -1,0 +1,212 @@
+package builders;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.ejb.EJB;
+import javax.servlet.http.HttpServletRequest;
+
+import beans.Client;
+import remote.MySecurityRemote;
+
+public class ClientBuilder {
+
+    private static final String CHAMP_NOM             = "nomClient";
+    private static final String CHAMP_PRENOM          = "prenomClient";
+    private static final String CHAMP_ADRESSE         = "adresseClient";
+    private static final String CHAMP_TELEPHONE       = "telephoneClient";
+    private static final String CHAMP_EMAIL           = "emailClient";
+    private static final String CHAMP_DATEDENAISSANCE = "dateDeNaissanceClient";
+    private static final String CHAMP_PASSWORD        = "passwordClient";
+    private static final String CHAMP_CONFIRMPASSWORD = "passwordConfirmClient";
+
+    private static final String DATE_FORMAT           = "dd/MM/yyyy";
+
+    private Map<String, String> erreurs               = new HashMap<String, String>();
+
+    @EJB
+    private MySecurityRemote    mySecurityRemote;
+
+    public ClientBuilder() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+    public Client createClient( HttpServletRequest request ) {
+        String nom = getValeurChamp( request, CHAMP_NOM );
+        String prenom = getValeurChamp( request, CHAMP_PRENOM );
+        String adresse = getValeurChamp( request, CHAMP_ADRESSE );
+        String telephone = getValeurChamp( request, CHAMP_TELEPHONE );
+        String email = getValeurChamp( request, CHAMP_EMAIL );
+        String sDateDeNaissance = getValeurChamp( request, CHAMP_DATEDENAISSANCE );
+        String password = getValeurChamp( request, CHAMP_PASSWORD );
+        String passwordConfirm = getValeurChamp( request, CHAMP_CONFIRMPASSWORD );
+
+        Client client = new Client();
+
+        try {
+            validNom( nom );
+            client.setNom( nom );
+        } catch ( Exception e ) {
+            setErreur( CHAMP_NOM, e.getMessage() );
+        }
+
+        try {
+            validPrenom( prenom );
+            client.setPrenom( prenom );
+        } catch ( Exception e ) {
+            setErreur( CHAMP_PRENOM, e.getMessage() );
+        }
+
+        try {
+            validAdresse( adresse );
+            client.setAdresse( adresse );
+        } catch ( Exception e ) {
+            setErreur( CHAMP_ADRESSE, e.getMessage() );
+        }
+
+        try {
+            validTelephone( telephone );
+            client.setTelephone( telephone );
+        } catch ( Exception e ) {
+            setErreur( CHAMP_TELEPHONE, e.getMessage() );
+        }
+
+        try {
+            validEmail( email );
+            client.setEmail( email );
+        } catch ( Exception e ) {
+            setErreur( CHAMP_EMAIL, e.getMessage() );
+        }
+
+        try {
+            validDateDeNaissance( sDateDeNaissance );
+            client.setDateDeNaissance( stringToDate( sDateDeNaissance ) );
+        } catch ( Exception e ) {
+            setErreur( CHAMP_DATEDENAISSANCE, e.getMessage() );
+        }
+        try {
+            validPassword( password, passwordConfirm );
+            client.setPassword( MySecurityRemote.encrypt( password ) );
+        } catch ( Exception e ) {
+            // TODO Auto-generated catch block
+            setErreur( CHAMP_PASSWORD, e.getMessage() );
+        }
+
+        return client;
+
+    }
+
+    private void validNom( String nom ) throws Exception {
+        if ( !nom.isEmpty() ) {
+            if ( !nom.matches( "^[a-zA-Z0-9 éèàçâêîôû]{3,20}$" ) )
+                throw new Exception( "Nom incorrect. Format : a-z, A-Z, 3 à 20 caractères." );
+        } else {
+            throw new Exception( "Champ vide." );
+        }
+    }
+
+    private void validPrenom( String prenom ) throws Exception {
+        if ( !prenom.isEmpty() ) {
+            if ( !prenom.matches( "^[a-zA-Z0-9 éèàçâêîôû]{3,20}$" ) )
+                throw new Exception( "Prénom incorrect. Format : a-z, A-Z, 3 à 20 caractères." );
+        } else {
+            throw new Exception( "Champ vide." );
+        }
+    }
+
+    private void validAdresse( String adresse ) throws Exception {
+        if ( !adresse.isEmpty() ) {
+            if ( !adresse.matches( "^[A-Za-z0-9- éèàçâêîôû ',]{10,150}$" ) )
+
+                throw new Exception( "L'adresse est incorrecte" );
+        } else {
+            throw new Exception( "Adresse doit contenir quelque chose." );
+        }
+    }
+
+    private void validTelephone( String telephone ) throws Exception {
+        if ( telephone != null ) {
+            if ( !telephone.matches( "^\\d+$" ) ) {
+                throw new Exception( "Le numéro de téléphone doit uniquement contenir des chiffres." );
+            } else if ( telephone.length() < 4 ) {
+                throw new Exception( "Le numéro de téléphone doit contenir au moins 4 chiffres." );
+            }
+        } else {
+            throw new Exception( "Merci d'entrer un numéro de téléphone." );
+        }
+    }
+
+    private void validEmail( String email ) throws Exception {
+        if ( email != null && !email.matches(
+                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$" ) ) {
+            throw new Exception( "Email Invalide. Format => \"*@*.*\" ." );
+        } else {
+            throw new Exception( "Champ vide." );
+        }
+
+    }
+
+    private void validDateDeNaissance( String sDateDeNaissance ) throws Exception {
+        if ( sDateDeNaissance != null ) {
+            SimpleDateFormat formatter = new SimpleDateFormat( DATE_FORMAT );
+            if ( formatter.parse( sDateDeNaissance ) == null ) {
+                throw new Exception(
+                        new StringBuilder( "Format de la date incorrecte : " ).append( DATE_FORMAT ).toString() );
+            }
+        } else {
+            throw new Exception(
+                    new StringBuilder( "Merci de renseigner une date, format : " ).append( DATE_FORMAT ).toString() );
+        }
+    }
+
+    private void validPassword( String password, String passwordConfirm ) throws Exception {
+        if ( password != null && passwordConfirm != null ) {
+            if ( !password.equals( passwordConfirm ) ) {
+                throw new Exception( "passwords différents." );
+            }
+        } else {
+            throw new Exception( "Remplissez les deux champs password." );
+
+        }
+    }
+
+    private Date stringToDate( String sDate ) {
+        SimpleDateFormat formatter = new SimpleDateFormat( DATE_FORMAT );
+        Date date = null;
+        try {
+            date = formatter.parse( sDate );
+        } catch ( ParseException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return date;
+
+    }
+
+    private void setErreur( String champ, String message ) {
+        erreurs.put( champ, message );
+    }
+
+    private static String getValeurChamp( HttpServletRequest request, String nomChamp ) {
+        String valeur = request.getParameter( nomChamp );
+        if ( valeur == null || valeur.trim().length() == 0 ) {
+            return null;
+        } else {
+            return valeur;
+        }
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see impl.ClientBuilderRemote#getErreurs()
+     */
+    public Map<String, String> getErreurs() {
+        return erreurs;
+    }
+
+}

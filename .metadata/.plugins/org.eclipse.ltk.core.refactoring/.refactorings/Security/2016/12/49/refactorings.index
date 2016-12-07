@@ -1,0 +1,6 @@
+1480974467042	Extract interface 'SecurityRemote'
+1480974474529	Move compilation unit
+1481040770281	Rename compilation unit 'Security.java'
+1481040776363	Rename type 'SecurityRemote'
+1481042519343	Rename type 'MySecurity'
+1481042533275	Rename type 'MySecurityRemote'

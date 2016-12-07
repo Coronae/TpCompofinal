@@ -1,0 +1,9 @@
+package remote;
+
+public interface MySecurityRemote {
+
+    public String encrypt( String password );
+
+    public String byteToHex( final byte[] hash )
+
+}

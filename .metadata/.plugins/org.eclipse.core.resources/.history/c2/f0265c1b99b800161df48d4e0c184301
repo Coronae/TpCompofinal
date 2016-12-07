@@ -1,0 +1,119 @@
+package beans;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table( name = "CLIENTS" )
+public class Client{
+
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    private long         ID;
+    private String       nom;
+    private String       prenom;
+    private String       adresse;
+    private String       telephone;
+
+    private Date         dateDeNaissance;
+    private Date         dateInscription;
+    private String       email;
+
+    @OneToMany
+    @JoinColumn( name = "ID_command" )
+    private Set<Command> listCommands;
+
+    @OneToMany
+    @JoinColumn( name = "ID_item" )
+    private Set<Item>    listItems;
+
+    public Client() {
+        super();
+        setDateInscription();
+    }
+
+    public Set<Command> getListCommands() {
+        return listCommands;
+    }
+
+    public void setListCommands( Set<Command> listCommands ) {
+        this.listCommands = listCommands;
+    }
+
+    public Set<Item> getListItems() {
+        return listItems;
+    }
+
+    public void setListItems( Set<Item> listItems ) {
+        this.listItems = listItems;
+    }
+
+    public long getID() {
+        return ID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail( String email ) {
+        this.email = email;
+    }
+
+    public Date getDateInscription() {
+        return dateInscription;
+    }
+
+    public void setDateInscription() {
+        this.dateInscription = new Date();
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone( String numTel ) {
+        this.telephone = numTel;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse( String adresse ) {
+        this.adresse = adresse;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom( String nom ) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom( String prenom ) {
+        this.prenom = prenom;
+    }
+
+    public Date getDateDeNaissance() {
+        return dateDeNaissance;
+    }
+
+    public void setDateDeNaissance( Date dateDeNaissance ) {
+        this.dateDeNaissance = dateDeNaissance;
+    }
+}

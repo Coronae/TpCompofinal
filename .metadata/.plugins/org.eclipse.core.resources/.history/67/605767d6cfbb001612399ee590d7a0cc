@@ -1,0 +1,12 @@
+package remote;
+
+import javax.ejb.Remote;
+
+@Remote
+public interface MySecurityRemote {
+
+    public String encrypt( String password );
+
+    public String byteToHex( final byte[] hash );
+
+}

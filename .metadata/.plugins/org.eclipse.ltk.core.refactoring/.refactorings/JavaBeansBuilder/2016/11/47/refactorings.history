@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;impl.ClientBuildImpl.java&apos; to &apos;ClientBuilderImpl.java&apos;&#x0D;&#x0A;- Original project: &apos;JavaBeansBuilder&apos;&#x0D;&#x0A;- Original element: &apos;impl.ClientBuildImpl.java&apos;&#x0D;&#x0A;- Renamed element: &apos;impl.ClientBuilderImpl.java&apos;" description="Rename compilation unit &apos;ClientBuildImpl.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/ejbModule&lt;impl{ClientBuildImpl.java" name="ClientBuilderImpl.java" references="false" stamp="1480093677705" version="1.0"/>
+</session>

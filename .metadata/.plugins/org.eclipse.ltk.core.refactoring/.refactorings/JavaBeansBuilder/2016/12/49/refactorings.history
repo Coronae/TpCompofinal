@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 3 elements to &apos;WebECommerce/src/builder&apos;&#x0D;&#x0A;- Original project: &apos;JavaBeansBuilder&apos;&#x0D;&#x0A;- Destination element: &apos;WebECommerce/src/builder&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     impl.ClientBuilder.java&#x0D;&#x0A;     impl.ItemBuilder.java&#x0D;&#x0A;     impl.CommandBuilder.java&#x0D;&#x0A;- Update references to refactored element" description="Move compilation units" destination="=WebECommerce/src&lt;builder" element1="/ejbModule&lt;impl{ClientBuilder.java" element2="/ejbModule&lt;impl{ItemBuilder.java" element3="/ejbModule&lt;impl{CommandBuilder.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1480954011413" units="3" version="1.0"/>
+</session>

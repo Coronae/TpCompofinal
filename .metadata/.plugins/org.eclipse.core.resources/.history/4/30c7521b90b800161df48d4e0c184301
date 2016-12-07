@@ -1,0 +1,85 @@
+package beans;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table( name = "COMMANDS" )
+public class Command implements Serializable {
+
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    private long    ID;
+
+    private Boolean enCours;
+    private Date    date;
+
+    private double  prixHT;
+    private double  prixTTC;
+
+    @ManyToOne
+    @JoinColumn( name = "ID" )
+    private Client  client;
+
+    @ManyToOne
+    @JoinColumn( name = "ID" )
+    private ArrayList<Item>    listItems;
+
+    public Command() {
+        super();
+    }
+
+    public long getID() {
+        return ID;
+    }
+
+    public Boolean getEnCours() {
+        return enCours;
+    }
+
+    public void setEnCours( Boolean enCours ) {
+        this.enCours = enCours;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate( Date date ) {
+        this.date = date;
+    }
+
+    public double getPrixHT() {
+        return prixHT;
+    }
+
+    public void setPrixHT( double prixHT ) {
+        this.prixHT = prixHT;
+    }
+
+    public double getPrixTTC() {
+        return prixTTC;
+    }
+
+    public void setPrixTTC( double prixTTC ) {
+        this.prixTTC = prixTTC;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient( Client client ) {
+        this.client = client;
+    }
+
+}

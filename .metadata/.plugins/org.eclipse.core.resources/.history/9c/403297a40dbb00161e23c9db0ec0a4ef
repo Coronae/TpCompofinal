@@ -1,0 +1,60 @@
+package servlets;
+
+import java.io.IOException;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.Item;
+import builder.ItemBuilder;
+
+public class AddItemServlet extends HttpServlet {
+
+    private static final String ATT_ITEM    = "item";
+    private static final String ATT_ERREURS = "form";
+
+    private static final String VUE_FORM    = "/WEB-INF/addItemBoostrap.jsp";
+    private static final String VUE_SUCCES  = "/WEB-INF/itemValide.jsp";
+
+    private Map<String, String> erreurs;
+
+    private Item                item;
+
+    private ItemBuilder         itemBuilder = new ItemBuilder();
+
+    @Override
+    protected void doGet( HttpServletRequest request, HttpServletResponse response )
+            throws ServletException, IOException {
+
+        this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
+
+    }
+
+    @Override
+    protected void doPost( HttpServletRequest request, HttpServletResponse response )
+            throws ServletException, IOException {
+
+        item = itemBuilder.createItem( request );
+        erreurs = (Map<String, String>) request.getAttribute( ATT_ERREURS );
+
+        request.setAttribute( ATT_ITEM, item );
+
+        if ( erreurs.isEmpty() ) {
+            this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
+        } else {
+            this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
+        }
+
+    }
+
+    @Override
+    public String getServletInfo() {
+
+        return "Servlet de Creation d'un Client";
+
+    }
+
+}

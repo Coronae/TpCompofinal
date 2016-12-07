@@ -1,0 +1,81 @@
+package servlets;
+
+import java.io.IOException;
+import java.util.Map;
+
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.Item;
+import builders.ItemBuilder;
+import remote.ItemManagerRemote;
+
+/**
+ * Servlet implementation class ItemServlet
+ */
+@WebServlet( name = "ItemServlet", urlPatterns = "/AddItem" )
+public class AddItemServlet extends HttpServlet {
+
+    /**
+     * 
+     */
+    private static final long   serialVersionUID = -4824035259293418433L;
+    /**
+     * Default constructor.
+     */
+
+    private static final String ATT_ITEM         = "item";
+    private static final String ATT_ERREURS      = "form";
+
+    private static final String VUE_FORM         = "/WEB-INF/admin.jsp";
+    private static final String VUE_SUCCES       = "/WEB-INF/adminValid.jsp";
+
+    private Map<String, String> erreurs;
+
+    private Item                item;
+
+    private ItemBuilder         itemBuilder;
+
+    @EJB
+    private ItemManagerRemote   itemManagerRemote;
+
+    public AddItemServlet() {
+        // TODO Auto-generated constructor stub
+    }
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    @Override
+    protected void doGet( HttpServletRequest request, HttpServletResponse response )
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    @Override
+    protected void doPost( HttpServletRequest request, HttpServletResponse response )
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        itemBuilder = new ItemBuilder();
+        item = itemBuilder.createItem( request );
+        request.setAttribute( ATT_CLIENT, item );
+
+        if ( erreurs.isEmpty() ) {
+            this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
+            itemManagerRemote.create( item );
+        } else {
+            this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
+        }
+    }
+
+}

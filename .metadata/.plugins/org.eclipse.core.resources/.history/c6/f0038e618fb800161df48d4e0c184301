@@ -1,0 +1,95 @@
+package beans;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table( name = "CLIENTS" )
+public class Client implements Serializable {
+
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    private long   ID;
+    private String nom;
+    private String prenom;
+    private String adresse;
+    private String telephone;
+
+    private Date   dateDeNaissance;
+    private Date   dateInscription;
+    private String email;
+    
+    private ArrayList<Command> listCommands;
+
+    public Client() {
+        super();
+        setDateInscription();
+    }
+
+    public long getID() {
+        return ID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail( String email ) {
+        this.email = email;
+    }
+
+    public Date getDateInscription() {
+        return dateInscription;
+    }
+
+    public void setDateInscription() {
+        this.dateInscription = new Date();
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone( String numTel ) {
+        this.telephone = numTel;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse( String adresse ) {
+        this.adresse = adresse;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom( String nom ) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom( String prenom ) {
+        this.prenom = prenom;
+    }
+
+    public Date getDateDeNaissance() {
+        return dateDeNaissance;
+    }
+
+    public void setDateDeNaissance( Date dateDeNaissance ) {
+        this.dateDeNaissance = dateDeNaissance;
+    }
+}

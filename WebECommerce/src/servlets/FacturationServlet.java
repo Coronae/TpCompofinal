@@ -1,0 +1,60 @@
+package servlets;
+
+import java.io.IOException;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.Client;
+
+/**
+ * Servlet implementation class FacturationServlet
+ */
+@WebServlet( name = "FacturationServlet", urlPatterns = "/Facturation" )
+public class FacturationServlet extends HttpServlet {
+    private static final long   serialVersionUID = 1L;
+
+    /**
+     * Default constructor.
+     */
+
+    private static final String ATT_CLIENT       = "Facturation";
+    private static final String ATT_ERREURS      = "form";
+
+    private static final String VUE_FORM         = "/WEB-INF/facturation.jsp";
+    private static final String VUE_SUCCES       = "/WEB-INF/facturationValid.jsp";
+
+    private Map<String, String> erreurs;
+
+    private Client              client;
+
+    public FacturationServlet() {
+        // TODO Auto-generated constructor stub
+    }
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    @Override
+    protected void doGet( HttpServletRequest request, HttpServletResponse response )
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    @Override
+    protected void doPost( HttpServletRequest request, HttpServletResponse response )
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
+    }
+
+}

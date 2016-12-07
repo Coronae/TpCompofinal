@@ -1,0 +1,89 @@
+<%@ page pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:include page="includes\header.jsp">
+	<jsp:param name="client" value="${client}" />
+</jsp:include>
+<body>
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<form role="form" action="AddItem" method="post">
+						<div class="form-group">
+							<label class="control-label" for="designationItem">Désignation
+								du produit</label> <input class="form-control" id="designationItem"
+								type="email" name="designationItem">
+							<span class='inline-block highlight-error'>${form.erreurs['designationItem']}</span>
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="descriptionItem">Description
+								du produit</label> <input class="form-control" id="descriptionItem"
+								 type="text" name="descriptionItem">
+							<span class='inline-block highlight-error'>${form.erreurs['descriptionItem']}</span>
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="tagsItem">Tags du
+								produit <span class="inline-block highlight-warning">(à 
+									separer d'une vigule)</span>
+							</label> <input class="form-control" id="tagsItem" name="tagsItem"
+								 type="text"> <span
+								class='inline-block highlight-error'>${form.erreurs['tagsItem']}</span>
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="categorieItem">Catégorie
+								du produit</label> <input disabled="disabled" class="form-control" id="categorieItem"
+								name="categorieItem" type="text">
+							<span class='inline-block highlight-error'>${form.erreurs['categorieItem']}</span>
+						</div>
+						<script>
+							function agricole() {
+								document.getElementById("categorieItem").value = "agricole";
+							}
+							function alimentaire() {
+								document.getElementById("categorieItem").value = "alimentaire";
+							}
+							function culturel() {
+								document.getElementById("categorieItem").value = "culturel";
+							}
+						</script>
+						<div class="col-md-4">
+							<button onclick="agricole()" class="btn btn-primary"
+								type="button">Agricole</button>
+						</div>
+						<div class="col-md-4">
+							<button class="btn btn-primary" onclick="culturel()"
+								type="button">Culturel</button>
+						</div>
+						<div class="col-md-4">
+							<button class="btn btn-primary" onclick="alimentaire()"
+								type="button">Alimentaire</button>
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="quantiteItem">Quantité
+								du produit</label> <input class="form-control" id="quantiteItem"
+								name="quantiteItem" type="number"> <span
+								class='inline-block highlight-error'>${form.erreurs['quantiteItem']}</span>
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="prixHTItem">Prix HT (en
+								euros)</label> <input class="form-control" id="prixHTItem"
+								name="prixHTItem" type="text"> <span
+								class='inline-block highlight-error'>${form.erreurs['prixHTItem']}</span>
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="imgItem">Photo du
+								produit</label> <input class="form-control" id="imgItem" name="imgItem"
+								type="file"> <span class='inline-block highlight-error'>${form.erreurs['imgItem']}</span>
+						</div>
+						<div class="text-center">
+							<button type="submit" class="btn btn-default ">valider</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+import java.util.Date;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.hibernate.validator.internal.util.logging.LoggerFactory;
+
+public class Security {
+
+    private final Logger       log              = LoggerFactory.getLogger( CipherUtilSecret.class );
+
+    public static final String CIPHER_ALGORITHM = "AES";
+    public static final String KEY_ALGORITHM    = "AES";
+    public static final byte[] SECRET_KEY       = "16BYTESSECRETKEY".getBytes( Charsets.UTF_8 );    // exactly
+                                                                                                    // 16
+                                                                                                    // bytes
+                                                                                                    // to
+                                                                                                    // not
+                                                                                                    // use
+                                                                                                    // JCE
+                                                                                                    // (Java
+                                                                                                    // Cryptography
+                                                                                                    // Extension)
+
+    public static byte[] encrypt (final String message, SecretKey cle)
+    38.
+    throws NoSuchAlgorithmException, NoSuchPaddingException,
+    39.
+    InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+    40.
+    Cipher cipher = Cipher.getInstance("DESede");
+    41.
+    cipher.init(Cipher.ENCRYPT_MODE, cle);
+    42.
+    byte[] donnees = message.getBytes();
+    43.
+     
+    44.
+    return cipher.doFinal(donnees);
+    45.
+    }
+    46.
+     
+    47.
+    public static String decrypt(final byte[] donnees, SecretKey cle)
+    48.
+    throws NoSuchAlgorithmException, NoSuchPaddingException,
+    49.
+    InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+    50.
+    Cipher cipher = Cipher.getInstance("DESede");
+    51.
+    cipher.init(Cipher.DECRYPT_MODE, cle);
+    52.
+     
+    53.
+    return new String(cipher.doFinal(donnees));
+    54.
+    }
+
+    public static void main( String[] args ) {
+        CipherUtilSecret cipherUtil = new CipherUtilSecret();
+        // Encryption
+        String encryptedString = cipherUtil
+                .encrypt( "1,2,3 allons dans les bois : " + String.valueOf( new Date().getTime() ) );
+        // Before Decryption
+        System.out.println( "Avant déchiffrement : " + encryptedString );
+        String s = cipherUtil.decrypt( encryptedString );
+        System.out.println( "Après déchiffrement : " + s );
+    }
+}

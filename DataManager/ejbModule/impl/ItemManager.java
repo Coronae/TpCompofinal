@@ -1,0 +1,78 @@
+package impl;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import beans.Item;
+import remote.ItemManagerRemote;
+
+@Stateless
+@LocalBean
+public class ItemManager implements ItemManagerRemote {
+
+    final static String SELECT_QUERY = "SELECT i FROM ITEMS as ";
+
+    @PersistenceContext( unitName = "BD_ECommerce" )
+    EntityManager       em;
+
+    @Override
+    public void create( Item item ) {
+        try {
+            em.persist( item );
+        } catch ( Exception e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void remove( Item item ) {
+        try {
+            em.remove( em.merge( item ) );
+        } catch ( Exception e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void remove( long ID ) {
+        StringBuilder sbQuery = new StringBuilder( SELECT_QUERY );
+        Query query = em.createQuery( sbQuery.append( "i.ID = " ).append( ID ).toString() );
+        Item item = (Item) query.getSingleResult();
+        try {
+            em.remove( item );
+        } catch ( Exception e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<Item> find( Map<String, String> tabProps ) {
+
+        StringBuilder sbQuery = new StringBuilder( SELECT_QUERY );
+        Set<String> listKeys = tabProps.keySet();
+        Iterator<String> iterator = listKeys.iterator();
+
+        while ( iterator.hasNext() ) {
+
+            Object key = iterator.next();
+            sbQuery.append( "AND i." ).append( key ).append( tabProps.get( key ) );
+        }
+
+        Query query = em.createQuery( sbQuery.toString() );
+
+        return query.getResultList();
+    }
+
+}

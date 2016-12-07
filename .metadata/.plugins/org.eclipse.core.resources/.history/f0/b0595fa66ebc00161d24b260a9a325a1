@@ -1,0 +1,24 @@
+package beanSession;
+
+public class User {
+
+    private String email;
+    private String pwd;
+
+    public void setEmail( String email ) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setPWD( String motDePasse ) {
+        this.pwd = pwd;
+    }
+
+    public String getPWD() {
+        return pwd;
+    }
+
+}

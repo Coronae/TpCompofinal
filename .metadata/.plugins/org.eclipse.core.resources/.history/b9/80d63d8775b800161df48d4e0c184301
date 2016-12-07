@@ -1,0 +1,65 @@
+package impl;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import beans.Client;
+import remote.ClientManagerRemote;
+
+@Stateless
+@LocalBean
+public class ClientManagerImpl implements ClientManagerRemote {
+
+    final static String SELECT_QUERY = "SELECT c FROM Client as ";
+
+    @PersistenceContext( name = "clientManager" )
+    EntityManager       em;
+
+    @Override
+    public void create( Client client ) {
+        try {
+            em.persist( client );
+        } catch ( Exception e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void remove( Client client ) {
+        try {
+            em.remove( client );
+        } catch ( Exception e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void remove( long ID ) {
+        StringBuilder sbQuery = new StringBuilder( SELECT_QUERY );
+        Query query = em.createQuery( sbQuery.append( "c.ID = " ).append( ID ).toString() );
+        Client client = (Client) query.getSingleResult();
+        try {
+            em.remove( client );
+        } catch ( Exception e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public List<Client> find( Map<String, String> tabProps ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+}

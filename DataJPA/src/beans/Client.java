@@ -1,7 +1,7 @@
 package beans;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -26,8 +26,8 @@ public class Client implements Serializable {
 
     private String       password;
 
-    private Date         dateDeNaissance;
-    private Date         dateInscription;
+    private Timestamp    dateDeNaissance;
+    private Timestamp    dateInscription;
     private String       email;
 
     @OneToMany
@@ -78,11 +78,11 @@ public class Client implements Serializable {
         this.email = email;
     }
 
-    public Date getDateInscription() {
+    public Timestamp getDateInscription() {
         return dateInscription;
     }
 
-    public void setDateInscription( Date dateInscription ) {
+    public void setDateInscription( Timestamp dateInscription ) {
         this.dateInscription = dateInscription;
     }
 
@@ -118,11 +118,11 @@ public class Client implements Serializable {
         this.prenom = prenom;
     }
 
-    public Date getDateDeNaissance() {
+    public Timestamp getDateDeNaissance() {
         return dateDeNaissance;
     }
 
-    public void setDateDeNaissance( Date dateDeNaissance ) {
+    public void setDateDeNaissance( Timestamp dateDeNaissance ) {
         this.dateDeNaissance = dateDeNaissance;
     }
 }

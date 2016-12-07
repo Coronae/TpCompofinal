@@ -3,7 +3,6 @@ package builders;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 
 import beanSession.User;
@@ -15,9 +14,6 @@ public class UserBuilder {
     public static final String  CHAMP_EMAIL = "emailUser";
     public static final String  CHAMP_PASS  = "passwordUser";
 
-    @EJB
-    private EncryptorRemote     encryptorRemote;
-
     private Map<String, String> erreurs     = new HashMap<String, String>();
 
     public UserBuilder() {
@@ -25,7 +21,7 @@ public class UserBuilder {
         // TODO Auto-generated constructor stub
     }
 
-    public User createUser( HttpServletRequest request, Client client ) {
+    public User createUser( HttpServletRequest request, Client client, EncryptorRemote encryptorRemote ) {
         String email = getValeurChamp( request, CHAMP_EMAIL );
         String pwd = getValeurChamp( request, CHAMP_PASS );
 

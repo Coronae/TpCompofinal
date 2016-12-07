@@ -19,6 +19,7 @@
 
 					<form role="form"  method="post" action="Inscription">
 						<div class="form-group">
+						<span><c:out value="${client.nom}"/></span>
 							<label class="control-label">Nom</label> <input id="nomClient"
 								name="nomClient" class="form-control" type="text"
 								 value="<c:out value="${client.nom}"/>"/>

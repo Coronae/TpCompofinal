@@ -1,6 +1,6 @@
 package builders;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -32,7 +32,7 @@ public class CommandBuilder {
         Command c = new Command();
 
         c.setClient( client );
-        c.setDate( new Date() );
+        c.setDate( new Timestamp( System.currentTimeMillis() ) );
         c.setEnCours( true );
         c.setPrixHT( calculPrixHT( listItem ) );
         c.setPrixTTC( calculPrixTTC( listItem ) );

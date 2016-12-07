@@ -1,12 +1,11 @@
 package builders;
 
-import java.text.ParseException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 
 import beans.Client;
@@ -23,25 +22,22 @@ public class ClientBuilder {
     private static final String CHAMP_PASSWORD        = "passwordClient";
     private static final String CHAMP_CONFIRMPASSWORD = "passwordConfirmClient";
 
-    private static final String DATE_FORMAT           = "yyyy-mm-dd";
+    private static final String DATE_FORMAT           = "yyyy-MM-dd";
 
     private Map<String, String> erreurs               = new HashMap<String, String>();
-
-    @EJB
-    private EncryptorRemote     encryptorRemote;
 
     public ClientBuilder() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    public Client createClient( HttpServletRequest request ) {
+    public Client createClient( HttpServletRequest request, EncryptorRemote encryptorRemote ) {
         String nom = getValeurChamp( request, CHAMP_NOM );
         String prenom = getValeurChamp( request, CHAMP_PRENOM );
         String adresse = getValeurChamp( request, CHAMP_ADRESSE );
         String telephone = getValeurChamp( request, CHAMP_TELEPHONE );
         String email = getValeurChamp( request, CHAMP_EMAIL );
-        Date DateDeNaissance = (Date) request.getAttribute( CHAMP_DATEDENAISSANCE );
+        String sDateDeNaissance = getValeurChamp( request, CHAMP_DATEDENAISSANCE );
         String password = getValeurChamp( request, CHAMP_PASSWORD );
         String passwordConfirm = getValeurChamp( request, CHAMP_CONFIRMPASSWORD );
 
@@ -82,12 +78,12 @@ public class ClientBuilder {
             setErreur( CHAMP_EMAIL, e.getMessage() );
         }
 
-        // try {
-        // validDateDeNaissance( sDateDeNaissance );
-        client.setDateDeNaissance( DateDeNaissance );
-        // } catch ( Exception e ) {
-        // setErreur( CHAMP_DATEDENAISSANCE, e.getMessage() );
-        // }
+        try {
+            // validDateDeNaissance( sDateDeNaissance );
+            client.setDateDeNaissance( stringToDate( sDateDeNaissance ) );
+        } catch ( Exception e ) {
+            setErreur( CHAMP_DATEDENAISSANCE, e.getMessage() );
+        }
         try {
             validPassword( password, passwordConfirm );
             client.setPassword( encryptorRemote.encrypt( password ) );
@@ -175,16 +171,18 @@ public class ClientBuilder {
         }
     }
 
-    private Date stringToDate( String sDate ) {
-        SimpleDateFormat formatter = new SimpleDateFormat( DATE_FORMAT );
-        Date date = null;
+    private Timestamp stringToDate( String sDate ) {
+
+        Timestamp timestamp = null;
         try {
-            date = formatter.parse( sDate );
-        } catch ( ParseException e ) {
-            // TODO Auto-generated catch block
+            SimpleDateFormat dateFormat = new SimpleDateFormat( DATE_FORMAT );
+            Date parsedDate = dateFormat.parse( sDate );
+            timestamp = new Timestamp( parsedDate.getTime() );
+        } catch ( Exception e ) {
             setErreur( CHAMP_DATEDENAISSANCE, e.getMessage() );
         }
-        return date;
+
+        return timestamp;
 
     }
 

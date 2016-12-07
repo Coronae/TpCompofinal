@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import beans.Client;
 import builders.ClientBuilder;
 import remote.ClientManagerRemote;
+import remote.EncryptorRemote;
 
 @WebServlet( name = "InscriptionServlet", urlPatterns = "/Inscription" )
 public class InscriptionServlet extends HttpServlet {
@@ -29,6 +30,8 @@ public class InscriptionServlet extends HttpServlet {
 
     @EJB
     private ClientManagerRemote clientManagerRemote;
+    @EJB
+    private EncryptorRemote     encryptorRemote;
 
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response )
@@ -43,7 +46,7 @@ public class InscriptionServlet extends HttpServlet {
             throws ServletException, IOException {
 
         clientBuilder = new ClientBuilder();
-        client = clientBuilder.createClient( request );
+        client = clientBuilder.createClient( request, encryptorRemote );
 
         request.setAttribute( ATT_CLIENT, client );
         request.setAttribute( ATT_ERREURS, clientBuilder );

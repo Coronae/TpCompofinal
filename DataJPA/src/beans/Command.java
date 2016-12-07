@@ -1,7 +1,7 @@
 package beans;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ public class Command implements Serializable {
     private long      ID;
 
     private Boolean   enCours;
-    private Date      date;
+    private Timestamp date;
 
     private double    prixHT;
     private double    prixTTC;
@@ -61,11 +61,11 @@ public class Command implements Serializable {
         this.enCours = enCours;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate( Date date ) {
+    public void setDate( Timestamp date ) {
         this.date = date;
     }
 

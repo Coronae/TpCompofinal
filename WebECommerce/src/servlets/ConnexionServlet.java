@@ -14,6 +14,7 @@ import beanSession.User;
 import beans.Client;
 import builders.UserBuilder;
 import remote.ClientManagerRemote;
+import remote.EncryptorRemote;
 
 /**
  * Servlet implementation class ConnexionServlet
@@ -37,6 +38,8 @@ public class ConnexionServlet extends HttpServlet {
 
     @EJB
     ClientManagerRemote         clientManagerRemote;
+    @EJB
+    EncryptorRemote             encryptorRemote;
 
     private Client              client;
 
@@ -69,7 +72,7 @@ public class ConnexionServlet extends HttpServlet {
 
         client = clientManagerRemote.getClientFromEmail(
                 request.getParameter( UserBuilder.CHAMP_EMAIL ) );
-        user = userBuilder.createUser( request, client );
+        user = userBuilder.createUser( request, client, encryptorRemote );
 
         if ( userBuilder.getErreurs().isEmpty() ) {
             HttpSession httpSession = request.getSession();

@@ -58,6 +58,11 @@ public class ItemManager implements ItemManagerRemote {
     }
 
     @Override
+    public Item find( long ID ) {
+        return (Item) em.find( Item.class, ID );
+    }
+
+    @Override
     public List<Item> find( Map<String, String> tabProps ) {
 
         StringBuilder sbQuery = new StringBuilder( SELECT_QUERY );

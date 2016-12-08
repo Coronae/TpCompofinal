@@ -18,4 +18,6 @@ public interface ItemManagerRemote {
 
     public List<Item> find( Map<String, String> tabProps );
 
+    Item find( long ID );
+
 }

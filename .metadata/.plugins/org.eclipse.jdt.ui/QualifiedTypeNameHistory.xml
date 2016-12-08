@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.omg.CORBA.PUBLIC_MEMBER"/>
-<fullyQualifiedTypeName name="jdk.internal.dynalink.beans.StaticClass"/>
-<fullyQualifiedTypeName name="impl.MoneyManagerImpl"/>
 <fullyQualifiedTypeName name="javax.servlet.annotation.WebServlet"/>
 <fullyQualifiedTypeName name="java.beans.Client"/>
 <fullyQualifiedTypeName name="javax.ws.rs.client.ClientBuilder"/>
@@ -23,7 +20,6 @@
 <fullyQualifiedTypeName name="javax.inject.Inject"/>
 <fullyQualifiedTypeName name="javax.enterprise.inject.New"/>
 <fullyQualifiedTypeName name="builder.ClientBuilder"/>
-<fullyQualifiedTypeName name="beans.Item"/>
 <fullyQualifiedTypeName name="javax.el.StaticFieldELResolver"/>
 <fullyQualifiedTypeName name="java.security.InvalidKeyException"/>
 <fullyQualifiedTypeName name="javax.ejb.Stateless"/>
@@ -38,7 +34,6 @@
 <fullyQualifiedTypeName name="com.sun.security.ntlm.Client"/>
 <fullyQualifiedTypeName name="remote.ClientManagerRemote"/>
 <fullyQualifiedTypeName name="beanSession.User"/>
-<fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="org.hibernate.validator.constraints.Email"/>
 <fullyQualifiedTypeName name="com.sun.glass.ui.TouchInputSupport"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
@@ -48,9 +43,7 @@
 <fullyQualifiedTypeName name="org.omg.PortableServer.ServantActivator"/>
 <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
 <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
-<fullyQualifiedTypeName name="beans.Client"/>
 <fullyQualifiedTypeName name="org.jboss.resteasy.client.exception.ResteasyNoHttpResponseException"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="com.sun.jmx.snmp.Timestamp"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
@@ -58,6 +51,13 @@
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="builders.ClientBuilder"/>
 <fullyQualifiedTypeName name="javax.ejb.EJB"/>
-<fullyQualifiedTypeName name="builders.UserBuilder"/>
 <fullyQualifiedTypeName name="remote.EncryptorRemote"/>
+<fullyQualifiedTypeName name="builders.UserBuilder"/>
+<fullyQualifiedTypeName name="javax.persistence.NamedQueries"/>
+<fullyQualifiedTypeName name="javax.persistence.NamedQuery"/>
+<fullyQualifiedTypeName name="beans.Client"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.lang.Boolean"/>
+<fullyQualifiedTypeName name="beans.Item"/>
 </qualifiedTypeNameHistroy>

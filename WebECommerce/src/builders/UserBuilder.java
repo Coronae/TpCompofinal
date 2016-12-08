@@ -16,6 +16,8 @@ public class UserBuilder {
 
     private Map<String, String> erreurs     = new HashMap<String, String>();
 
+    private User                user;
+
     public UserBuilder() {
         super();
         // TODO Auto-generated constructor stub
@@ -23,9 +25,9 @@ public class UserBuilder {
 
     public User createUser( HttpServletRequest request, Client client, EncryptorRemote encryptorRemote ) {
         String email = getValeurChamp( request, CHAMP_EMAIL );
-        String pwd = getValeurChamp( request, CHAMP_PASS );
+        String pwd = encryptorRemote.encrypt( getValeurChamp( request, CHAMP_PASS ) );
 
-        User user = new User();
+        user = new User();
 
         if ( client != null ) {
 
@@ -37,7 +39,6 @@ public class UserBuilder {
             }
 
             try {
-                encryptorRemote.encrypt( pwd );
                 validationMotDePasse( pwd, client.getPassword() );
                 user.setPWD( pwd );
             } catch ( Exception e ) {
@@ -52,7 +53,7 @@ public class UserBuilder {
     }
 
     private void validationEmail( String email ) throws Exception {
-        if ( email != null ) {
+        if ( email == null ) {
             throw new Exception( "Merci de saisir une adresse mail." );
         }
     }

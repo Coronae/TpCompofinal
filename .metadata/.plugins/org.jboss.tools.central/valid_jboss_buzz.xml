@@ -2,13 +2,772 @@
 <?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/atom10full.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?><feed xmlns="http://www.w3.org/2005/Atom" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0">
 <title>JBoss Central</title>
 <generator uri="http://tt-rss.org/">Tiny Tiny RSS/1.9</generator>
-<updated>2016-10-18T23:25:39+00:00</updated>
+<updated>2016-10-20T13:39:24+00:00</updated>
 <id>http://tiny-man.rhcloud.com/public.php?op=rss&amp;id=1&amp;key=b0143615132bd9efc4e83ba42a5574f6ab939b28</id>
 
 
 <link href="http://tiny-man.rhcloud.com" rel="alternate" />
 
 <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/atom+xml" href="http://feeds.feedburner.com/jbossbuzz" /><feedburner:info uri="jbossbuzz" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /><entry>
+	<id>http://tools.jboss.org/blog/10.2.0.ga-for-neon.1.html</id>
+	<link href="http://feedproxy.google.com/~r/jbossbuzz/~3/B4sRviAw5zY/10.2.0.ga-for-neon.1.html" rel="alternate" type="text/html" />
+	<title>JBoss Tools and Red Hat Developer Studio Maintenance Release for Eclipse Neon 1</title>
+	<summary type="html"><![CDATA[
+      <div><div id="preamble">
+      <div class="sectionbody">
+      <div class="paragraph">
+      <p><a href="http://tools.jboss.org/downloads/jbosstools/neon/4.4.2.Final.html">JBoss Tools 4.4.2</a> and <a href="http://tools.jboss.org/downloads/devstudio/neon/10.2.0.GA.html">Red Hat JBoss Developer Studio 10.2</a> for Eclipse Neon 1 are here waiting for you. Check it out!</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/blog/images/devstudio10.png" alt="devstudio10" />
+      </div>
+      </div>
+      </div>
+      </div>
+      <div class="sect1">
+      <h2 id="installation"><a class="anchor" href="#installation"></a>Installation</h2>
+      <div class="sectionbody">
+      <div class="paragraph">
+      <p>JBoss Developer Studio comes with everything pre-bundled in its installer. Simply download it from our <a href="https://www.jboss.org/products/devstudio.html">JBoss Products page</a> and run it like this:</p>
+      </div>
+      <div class="literalblock">
+      <div class="content">
+      <pre>java -jar jboss-devstudio-&lt;installername&gt;.jar</pre>
+      </div>
+      </div>
+      <div class="paragraph">
+      <p>JBoss Tools or Bring-Your-Own-Eclipse (BYOE) JBoss Developer Studio require a bit more:</p>
+      </div>
+      <div class="paragraph">
+      <p>This release requires at least Eclipse 4.6.1 (Neon 1a) but we recommend
+      using the latest <a href="http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/neon1a">Eclipse 4.6.1 Neon JEE Bundle</a> since then you get most of the dependencies preinstalled.</p>
+      </div>
+      <div class="paragraph">
+      <p>Once you have installed Eclipse, you can either find us on the Eclipse Marketplace under &quot;JBoss Tools&quot; or &quot;Red Hat JBoss Developer Studio&quot;.</p>
+      </div>
+      <div class="paragraph">
+      <p>For JBoss Tools, you can also use our update site directly.</p>
+      </div>
+      <div class="literalblock">
+      <div class="content">
+      <pre>http://download.jboss.org/jbosstools/neon/stable/updates/</pre>
+      </div>
+      </div>
+      </div>
+      </div>
+      <div class="sect1">
+      <h2 id="what-is-new"><a class="anchor" href="#what-is-new"></a>What is new?</h2>
+      <div class="sectionbody">
+      <div class="paragraph">
+      <p>Our main focus for this release was improvements for container based development and bug fixing.</p>
+      </div>
+      <div class="sect2">
+      <h3 id="improved-openshift-3-and-docker-tools"><a class="anchor" href="#improved-openshift-3-and-docker-tools"></a>Improved OpenShift 3 and Docker Tools</h3>
+      <div class="paragraph">
+      <p>We continue to work on providing better experience for container based development in JBoss Tools and Developer Studio. Let’s go through a few interesting updates here.</p>
+      </div>
+      <div class="sect3">
+      <h4 id="node-js-debugger"><a class="anchor" href="#node-js-debugger"></a>Node.js Debugger</h4>
+      <div class="paragraph">
+      <p>Now it is possible to debug Node.js applications deployed to Openshift. All you need to do is creating a <strong>Server Adapter</strong> for the app and running it in the <strong>Debug</strong> mode. After that a new <strong>V8</strong> debug session will be created:</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/v8-debug-console.png" alt="v8 debug console" width="600" />
+      </div>
+      </div>
+      <div class="paragraph">
+      <p>Put some breakpoints in the code and start debugging!</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/node-js-debugger.png" alt="node js debugger" width="600" />
+      </div>
+      </div>
+      <div class="paragraph">
+      <p>Changing the code during the debug session is also supported - just save the file and new changes will be applied automatically. Here is a short demo video which describes the debugging process in action:</p>
+      </div>
+      <div class="videoblock">
+      <div class="content">
+      <iframe width="640" height="400" src="//www.youtube.com/embed/1cKPPQrlC4k?rel=0" frameborder="0" allowfullscreen=""></iframe>
+      </div>
+      </div>
+      <div class="paragraph">
+      <p>Step by step instructions are available <a href="http://tools.jboss.org/documentation/whatsnew/jbosstools/4.4.2.AM3.html#openshift">here</a>.</p>
+      </div>
+      </div>
+      <div class="sect3">
+      <h4 id="cluster-common-namespace"><a class="anchor" href="#cluster-common-namespace"></a>Cluster common namespace</h4>
+      <div class="paragraph">
+      <p>When looking for Openshift resources (builder images, templates), a common namespace is browsed.
+      Earlier hardcoded <code>openshift</code> namespace is now configurable with default value <code>openshift</code>.</p>
+      </div>
+      <div class="paragraph">
+      <p>It can be accessed and modified through the connection extended properties:</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/connection-extended-properties-namespace.png" alt="Connection extended properties" />
+      </div>
+      </div>
+      </div>
+      <div class="sect3">
+      <h4 id="user-controlled-hostname-when-creating-routes"><a class="anchor" href="#user-controlled-hostname-when-creating-routes"></a>User controlled hostname when creating routes</h4>
+      <div class="paragraph">
+      <p>When an application is being deployed to Openshift, a route is optionally created if required by the user.
+      Openshift/CDK used to create an <a href="http://xip.io">xip.io</a> based hostname. User can now set its own hostname.
+      This allows for both changing the DNS to local IP provider (<a href="http://nip.io">nip.io</a>) or using you own enterprise DNS naming strategy.</p>
+      </div>
+      <div class="paragraph">
+      <p>The hostname can be accessed from the Services and Routing Settings page when deploying an application:</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/wizard-new-application-hostname.png" alt="wizard new application hostname" width="600" />
+      </div>
+      </div>
+      </div>
+      <div class="sect3">
+      <h4 id="create-routes-targetting-a-specific-service-port"><a class="anchor" href="#create-routes-targetting-a-specific-service-port"></a>Create routes targetting a specific service port</h4>
+      <div class="paragraph">
+      <p>When an application is being deployed to Openshift, a route is optionally created if required by the user.
+      It is now possible to target a specific port (exposed by a to be created service). When the ports are being
+      displayed, it is now possible to select one of them to be used by the route. By default, the first port is selected.</p>
+      </div>
+      <div class="paragraph">
+      <p>The route port can be accessed from the Services and Routing Settings page when deploying an application:</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/wizard-new-application-route-port.png" alt="wizard new application route port" width="600" />
+      </div>
+      </div>
+      </div>
+      <div class="sect3">
+      <h4 id="cdk-server-using-native-terminal-for-better-user-interactions"><a class="anchor" href="#cdk-server-using-native-terminal-for-better-user-interactions"></a>CDK server using native terminal for better user interactions</h4>
+      <div class="paragraph">
+      <p>The CDK server adapter now uses a native terminal that allows better interaction with the user.
+      In the case credentials are not passed in the Vagrant environment, the user will be asked just as with
+      the standard Vagrant CLI and in case of registration failures, retries will be performed.</p>
+      </div>
+      <div class="paragraph">
+      <p>First, make sure your CDK server adapter is configured not to pass credentials:</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-editor-no-credentials-pass.png" alt="CDK editor" />
+      </div>
+      </div>
+      <div class="paragraph">
+      <p>Then, start the CDK server adapter and a new terminal window will open, asking for registration:</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-registration.png" alt="Registration" />
+      </div>
+      </div>
+      <div class="paragraph">
+      <p>If you answered <code>y</code> to the previous questions, then the terminal window will ask for username:</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-username.png" alt="Username" />
+      </div>
+      </div>
+      <div class="paragraph">
+      <p>Then the terminal window will ask for password:</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-password.png" alt="Password" />
+      </div>
+      </div>
+      <div class="paragraph">
+      <p>If the registration fails, then the terminal window will perform retries and ask again for username and password:</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-password2.png" alt="Password" />
+      </div>
+      </div>
+      </div>
+      </div>
+      <div class="sect2">
+      <h3 id="server-tools"><a class="anchor" href="#server-tools"></a>Server Tools</h3>
+      <div class="sect3">
+      <h4 id="quickfixes-now-available-in-runtime-detection"><a class="anchor" href="#quickfixes-now-available-in-runtime-detection"></a>QuickFixes now available in runtime detection</h4>
+      <div class="paragraph">
+      <p>Runtime detection has been a feature of JBossTools for a long while, however, it would sometimes create runtime and server adapters with configuration errors without alerting the user. Now, the user will have an opportunity to execute quickfixes before completing the creation of their runtimes and servers.</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/server/images/JBIDE-15189_rt_detect_1.png" alt="JBIDE 15189 rt detect 1" />
+      </div>
+      </div>
+      <div class="paragraph">
+      <p>To see this in action, we can first open up the runtime-detection preference page. We can see that our runtime-detection will automatically search three paths for valid runtimes of any type.</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/server/images/JBIDE-15189_rt_detect_2.png" alt="JBIDE 15189 rt detect 2" />
+      </div>
+      </div>
+      <div class="paragraph">
+      <p>Once we click search, the runtime-detection’s search dialog appears, with results it has found. In this case, it has located an EAP 6.4 and an EAP 7.0 installation. However, we can see that both have errors. If we click on the error column for the discovered EAP 7.0, the error is expanded, and we see that we’re missing a valid / compatible JRE. To fix the issue, we should click on this item.</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/server/images/JBIDE-15189_rt_detect_3.png" alt="JBIDE 15189 rt detect 3" />
+      </div>
+      </div>
+      <div class="paragraph">
+      <p>When we click on the problem for EAP 7, the new JRE dialog appears, allowing us to add a compatible JRE. The dialog helpfully informs us of what the restrictions are for this specific runtime. In this case, we’re asked to define a JRE with a minimum version of Java-8.</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/server/images/JBIDE-15189_rt_detect_4.png" alt="JBIDE 15189 rt detect 4" />
+      </div>
+      </div>
+      <div class="paragraph">
+      <p>If we continue along with the process by locating and adding a Java 8 JRE, as shown above, and finish the dialog, we’ll see that all the errors will disappear for both runtimes. In this example, the EAP 6.4 required a JRE of Java 7 or higher. The addition of the Java 8 JRE fixed this issue as well.</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/server/images/JBIDE-15189_rt_detect_5.png" alt="JBIDE 15189 rt detect 5" />
+      </div>
+      </div>
+      <div class="paragraph">
+      <p>Hopefully, this will help users preemptively discover and fix errors before being hit with surprising errors when trying to use the created server adapters.</p>
+      </div>
+      </div>
+      <div class="sect3">
+      <h4 id="support-for-wildfly-10-1"><a class="anchor" href="#support-for-wildfly-10-1"></a>Support for WildFly 10.1</h4>
+      <div class="paragraph">
+      <p>The WildFly 10.0 Server adapter has been renamed to WildFly 10.x. It has been tested and verified to work for WildFly 10.1 installations.</p>
+      </div>
+      </div>
+      </div>
+      <div class="sect2">
+      <h3 id="hibernate-tools"><a class="anchor" href="#hibernate-tools"></a>Hibernate Tools</h3>
+      <div class="sect3">
+      <h4 id="hibernate-runtime-provider-updates"><a class="anchor" href="#hibernate-runtime-provider-updates"></a>Hibernate Runtime Provider Updates</h4>
+      <div class="paragraph">
+      <p>A number of additions and updates have been performed on the available Hibernate runtime  providers.</p>
+      </div>
+      <div class="sect4">
+      <h5 id="new-hibernate-5-2-runtime-provider"><a class="anchor" href="#new-hibernate-5-2-runtime-provider"></a>New Hibernate 5.2 Runtime Provider</h5>
+      <div class="paragraph">
+      <p>With final releases available in the Hibernate 5.2 stream, the time was right to make available a corresponding Hibernate 5.2 runtime provider. This runtime provider incorporates Hibernate Core version 5.2.2.Final and Hibernate Tools version 5.2.0.Beta1.</p>
+      </div>
+      <div class="imageblock" style="text-align: center">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/hibernate/images/4.4.1.Final/hibernate_5_2.png" alt="hibernate 5 2" width="381" />
+      </div>
+      <div class="title">Figure 1. Hibernate 5.2 is available</div>
+      </div>
+      </div>
+      <div class="sect4">
+      <h5 id="other-runtime-provider-updates"><a class="anchor" href="#other-runtime-provider-updates"></a>Other Runtime Provider Updates</h5>
+      <div class="paragraph">
+      <p>The Hibernate 4.3 runtime provider now incorporates Hibernate Core version 4.3.11.Final and Hibernate Tools version 4.3.5.Final.</p>
+      </div>
+      <div class="paragraph">
+      <p>The Hibernate 5.0 runtime provider now incorporates Hibernate Core version 5.0.10.Final and Hibernate Tools version 5.0.2.Final.</p>
+      </div>
+      <div class="paragraph">
+      <p>The Hibernate 5.1 runtime provider now incorporates Hibernate Core version 5.1.1.Final and Hibernate Tools version 5.1.0.CR1.</p>
+      </div>
+      </div>
+      </div>
+      </div>
+      <div class="sect2">
+      <h3 id="forge-tools"><a class="anchor" href="#forge-tools"></a>Forge Tools</h3>
+      <div class="sect3">
+      <h4 id="added-install-addon-from-the-catalog-command"><a class="anchor" href="#added-install-addon-from-the-catalog-command"></a>Added Install addon from the catalog command</h4>
+      <div class="paragraph">
+      <p>From Forge 3.3.0.Final onwards it is now possible to query and install addons listed in the <a href="http://forge.jboss.org/addons">Forge addons page</a>.</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/forge/images/4.4.1.AM3/addon-install-from-catalog.png" alt="addon install from catalog" />
+      </div>
+      </div>
+      </div>
+      <div class="sect3">
+      <h4 id="forge-runtime-updated-to-3-3-1-final"><a class="anchor" href="#forge-runtime-updated-to-3-3-1-final"></a>Forge Runtime updated to 3.3.1.Final</h4>
+      <div class="paragraph">
+      <p>The included Forge runtime is now 3.3.1.Final. Read the official announcement <a href="http://forge.jboss.org/news/jboss-forge-3.3.1.final-is-here">here</a>.</p>
+      </div>
+      <div class="imageblock">
+      <div class="content">
+      <img src="http://tools.jboss.org/documentation/whatsnew/forge/images/4.4.1.Final/startup.png" alt="startup" />
+      </div>
+      </div>
+      </div>
+      </div>
+      <div class="sect2">
+      <h3 id="freemarker"><a class="anchor" href="#freemarker"></a>Freemarker</h3>
+      <div class="sect3">
+      <h4 id="freemarker-2-3-25"><a class="anchor" href="#freemarker-2-3-25"></a>Freemarker 2.3.25</h4>
+      <div class="paragraph">
+      <p>Freemarker library included in the Freemarker IDE was updated to latest available version 2.3.25.</p>
+      </div>
+      </div>
+      <div class="sect3">
+      <h4 id="flth-fltx-file-extensions-added"><a class="anchor" href="#flth-fltx-file-extensions-added"></a>flth / fltx file extensions added</h4>
+      <div class="paragraph">
+      <p>The new flth and fltx extensions have been added and associated with Freemarker IDE. <code>flth</code> stands for HTML content whereas <code>fltx</code> stands for XML content.</p>
+      </div>
+      </div>
+      <div class="sect3">
+      <h4 id="overhaul-of-the-plugin-template-parser"><a class="anchor" href="#overhaul-of-the-plugin-template-parser"></a>Overhaul of the plugin template parser</h4>
+      <div class="paragraph">
+      <p>The parser that FreeMarker IDE uses to extract IDE-centric information
+      (needed for syntax highlighting, related tag highlighting,
+      auto-completion, outline view, etc.) was overhauled. Several bugs were
+      fixed, and support for the newer template language features were
+      added. Also, the syntax highlighting is now more detailed inside
+      expressions.</p>
+      </div>
+      </div>
+      <div class="sect3">
+      <h4 id="related-tag-background-highlighting-fixed"><a class="anchor" href="#related-tag-background-highlighting-fixed"></a>Related tag background highlighting fixed</h4>
+      <div class="paragraph">
+      <p>Fixed the issue when the (by default) yellow highlighting of the
+      related FTL tags shift away from under the tag as you type.</p>
+      </div>
+      </div>
+      <div class="sect3">
+      <h4 id="showing-whitespace-block-selection-mode"><a class="anchor" href="#showing-whitespace-block-selection-mode"></a>Showing whitespace, block selection mode</h4>
+      <div class="paragraph">
+      <p>The standard &quot;Show whitespace characters&quot; and &quot;Toggle block selection
+      mode&quot; icons are now available when editing a template.</p>
+      </div>
+      </div>
+      <div class="sect3">
+      <h4 id="improved-automatic-finishing-of-freemarker-constructs"><a class="anchor" href="#improved-automatic-finishing-of-freemarker-constructs"></a>Improved automatic finishing of FreeMarker constructs</h4>
+      <div class="paragraph">
+      <p>When you type <code>&lt;#</code>, <code>&lt;@</code>, <code>${</code>, <code>#{</code> and <code>&lt;#--</code> the freemarker editor now automatically closes them.</p>
+      </div>
+      </div>
+      <div class="sect3">
+      <h4 id="error-positions-links-on-the-console"><a class="anchor" href="#error-positions-links-on-the-console"></a>Error positions links on the console</h4>
+      <div class="paragraph">
+      <p>When a FreeMarker exception is printed to the console, the error
+      position in it is a link that navigates to the error. This has worked
+      long ago, but was broken for quite a while.</p>
+      </div>
+      </div>
+      <div class="sect3">
+      <h4 id="fixed-auto-indentation"><a class="anchor" href="#fixed-auto-indentation"></a>Fixed auto-indentation</h4>
+      <div class="paragraph">
+      <p>When hitting enter, sometimes the new line haven’t inherited the
+      indentation of the last line.</p>
+      </div>
+      </div>
+      <div class="sect3">
+      <h4 id="updated-the-database-used-for-auto-completion"><a class="anchor" href="#updated-the-database-used-for-auto-completion"></a>Updated the &quot;database&quot; used for auto completion</h4>
+      <div class="paragraph">
+      <p>Auto completion now knows all directives and &quot;built-ins&quot; up to
+      FreeMarker 2.3.25.</p>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      <div class="sect1">
+      <h2 id="what-is-next"><a class="anchor" href="#what-is-next"></a>What is next?</h2>
+      <div class="sectionbody">
+      <div class="paragraph">
+      <p>Having JBoss Tools 4.4.1 and Developer Studio 10.1 out we are already working on the next maintenance release for Eclipse Neon.1.</p>
+      </div>
+      <div class="paragraph">
+      <p>Enjoy!</p>
+      </div>
+      <div class="paragraph">
+      <p>Jeff Maury</p>
+      </div>
+      </div>
+      </div></div>
+    ]]></summary>
+	<content type="html">&lt;html&gt;&lt;body&gt;&lt;div&gt;&lt;div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;p&gt;&lt;a href="http://tools.jboss.org/downloads/jbosstools/neon/4.4.2.Final.html" target="_blank"&gt;JBoss Tools 4.4.2&lt;/a&gt; and &lt;a href="http://tools.jboss.org/downloads/devstudio/neon/10.2.0.GA.html" target="_blank"&gt;Red Hat JBoss Developer Studio 10.2&lt;/a&gt; for Eclipse Neon 1 are here waiting for you. Check it out!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/blog/images/devstudio10.png" alt="devstudio10"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h2&gt;&lt;a href="#installation" target="_blank"&gt;&lt;/a&gt;Installation&lt;/h2&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;p&gt;JBoss Developer Studio comes with everything pre-bundled in its installer. Simply download it from our &lt;a href="https://www.jboss.org/products/devstudio.html" target="_blank"&gt;JBoss Products page&lt;/a&gt; and run it like this:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;pre&gt;java -jar jboss-devstudio-&amp;lt;installername&amp;gt;.jar&lt;/pre&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;JBoss Tools or Bring-Your-Own-Eclipse (BYOE) JBoss Developer Studio require a bit more:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;This release requires at least Eclipse 4.6.1 (Neon 1a) but we recommend
+      using the latest &lt;a href="http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/neon1a" target="_blank"&gt;Eclipse 4.6.1 Neon JEE Bundle&lt;/a&gt; since then you get most of the dependencies preinstalled.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;Once you have installed Eclipse, you can either find us on the Eclipse Marketplace under "JBoss Tools" or "Red Hat JBoss Developer Studio".&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;For JBoss Tools, you can also use our update site directly.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;pre&gt;http://download.jboss.org/jbosstools/neon/stable/updates/&lt;/pre&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h2&gt;&lt;a href="#what-is-new" target="_blank"&gt;&lt;/a&gt;What is new?&lt;/h2&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;p&gt;Our main focus for this release was improvements for container based development and bug fixing.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h3&gt;&lt;a href="#improved-openshift-3-and-docker-tools" target="_blank"&gt;&lt;/a&gt;Improved OpenShift 3 and Docker Tools&lt;/h3&gt;
+      &lt;div&gt;
+      &lt;p&gt;We continue to work on providing better experience for container based development in JBoss Tools and Developer Studio. Let&amp;rsquo;s go through a few interesting updates here.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#node-js-debugger" target="_blank"&gt;&lt;/a&gt;Node.js Debugger&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;Now it is possible to debug Node.js applications deployed to Openshift. All you need to do is creating a &lt;strong&gt;Server Adapter&lt;/strong&gt; for the app and running it in the &lt;strong&gt;Debug&lt;/strong&gt; mode. After that a new &lt;strong&gt;V8&lt;/strong&gt; debug session will be created:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/v8-debug-console.png" alt="v8 debug console" width="600"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;Put some breakpoints in the code and start debugging!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/node-js-debugger.png" alt="node js debugger" width="600"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;Changing the code during the debug session is also supported - just save the file and new changes will be applied automatically. Here is a short demo video which describes the debugging process in action:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;Step by step instructions are available &lt;a href="http://tools.jboss.org/documentation/whatsnew/jbosstools/4.4.2.AM3.html#openshift" target="_blank"&gt;here&lt;/a&gt;.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#cluster-common-namespace" target="_blank"&gt;&lt;/a&gt;Cluster common namespace&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;When looking for Openshift resources (builder images, templates), a common namespace is browsed.
+      Earlier hardcoded &lt;code&gt;openshift&lt;/code&gt; namespace is now configurable with default value &lt;code&gt;openshift&lt;/code&gt;.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;It can be accessed and modified through the connection extended properties:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/connection-extended-properties-namespace.png" alt="Connection extended properties"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#user-controlled-hostname-when-creating-routes" target="_blank"&gt;&lt;/a&gt;User controlled hostname when creating routes&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;When an application is being deployed to Openshift, a route is optionally created if required by the user.
+      Openshift/CDK used to create an &lt;a href="http://xip.io" target="_blank"&gt;xip.io&lt;/a&gt; based hostname. User can now set its own hostname.
+      This allows for both changing the DNS to local IP provider (&lt;a href="http://nip.io" target="_blank"&gt;nip.io&lt;/a&gt;) or using you own enterprise DNS naming strategy.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;The hostname can be accessed from the Services and Routing Settings page when deploying an application:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/wizard-new-application-hostname.png" alt="wizard new application hostname" width="600"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#create-routes-targetting-a-specific-service-port" target="_blank"&gt;&lt;/a&gt;Create routes targetting a specific service port&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;When an application is being deployed to Openshift, a route is optionally created if required by the user.
+      It is now possible to target a specific port (exposed by a to be created service). When the ports are being
+      displayed, it is now possible to select one of them to be used by the route. By default, the first port is selected.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;The route port can be accessed from the Services and Routing Settings page when deploying an application:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/wizard-new-application-route-port.png" alt="wizard new application route port" width="600"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#cdk-server-using-native-terminal-for-better-user-interactions" target="_blank"&gt;&lt;/a&gt;CDK server using native terminal for better user interactions&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;The CDK server adapter now uses a native terminal that allows better interaction with the user.
+      In the case credentials are not passed in the Vagrant environment, the user will be asked just as with
+      the standard Vagrant CLI and in case of registration failures, retries will be performed.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;First, make sure your CDK server adapter is configured not to pass credentials:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-editor-no-credentials-pass.png" alt="CDK editor"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;Then, start the CDK server adapter and a new terminal window will open, asking for registration:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-registration.png" alt="Registration"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;If you answered &lt;code&gt;y&lt;/code&gt; to the previous questions, then the terminal window will ask for username:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-username.png" alt="Username"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;Then the terminal window will ask for password:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-password.png" alt="Password"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;If the registration fails, then the terminal window will perform retries and ask again for username and password:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-password2.png" alt="Password"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h3&gt;&lt;a href="#server-tools" target="_blank"&gt;&lt;/a&gt;Server Tools&lt;/h3&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#quickfixes-now-available-in-runtime-detection" target="_blank"&gt;&lt;/a&gt;QuickFixes now available in runtime detection&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;Runtime detection has been a feature of JBossTools for a long while, however, it would sometimes create runtime and server adapters with configuration errors without alerting the user. Now, the user will have an opportunity to execute quickfixes before completing the creation of their runtimes and servers.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/server/images/JBIDE-15189_rt_detect_1.png" alt="JBIDE 15189 rt detect 1"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;To see this in action, we can first open up the runtime-detection preference page. We can see that our runtime-detection will automatically search three paths for valid runtimes of any type.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/server/images/JBIDE-15189_rt_detect_2.png" alt="JBIDE 15189 rt detect 2"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;Once we click search, the runtime-detection&amp;rsquo;s search dialog appears, with results it has found. In this case, it has located an EAP 6.4 and an EAP 7.0 installation. However, we can see that both have errors. If we click on the error column for the discovered EAP 7.0, the error is expanded, and we see that we&amp;rsquo;re missing a valid / compatible JRE. To fix the issue, we should click on this item.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/server/images/JBIDE-15189_rt_detect_3.png" alt="JBIDE 15189 rt detect 3"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;When we click on the problem for EAP 7, the new JRE dialog appears, allowing us to add a compatible JRE. The dialog helpfully informs us of what the restrictions are for this specific runtime. In this case, we&amp;rsquo;re asked to define a JRE with a minimum version of Java-8.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/server/images/JBIDE-15189_rt_detect_4.png" alt="JBIDE 15189 rt detect 4"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;If we continue along with the process by locating and adding a Java 8 JRE, as shown above, and finish the dialog, we&amp;rsquo;ll see that all the errors will disappear for both runtimes. In this example, the EAP 6.4 required a JRE of Java 7 or higher. The addition of the Java 8 JRE fixed this issue as well.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/server/images/JBIDE-15189_rt_detect_5.png" alt="JBIDE 15189 rt detect 5"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;Hopefully, this will help users preemptively discover and fix errors before being hit with surprising errors when trying to use the created server adapters.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#support-for-wildfly-10-1" target="_blank"&gt;&lt;/a&gt;Support for WildFly 10.1&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;The WildFly 10.0 Server adapter has been renamed to WildFly 10.x. It has been tested and verified to work for WildFly 10.1 installations.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h3&gt;&lt;a href="#hibernate-tools" target="_blank"&gt;&lt;/a&gt;Hibernate Tools&lt;/h3&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#hibernate-runtime-provider-updates" target="_blank"&gt;&lt;/a&gt;Hibernate Runtime Provider Updates&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;A number of additions and updates have been performed on the available Hibernate runtime  providers.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h5&gt;&lt;a href="#new-hibernate-5-2-runtime-provider" target="_blank"&gt;&lt;/a&gt;New Hibernate 5.2 Runtime Provider&lt;/h5&gt;
+      &lt;div&gt;
+      &lt;p&gt;With final releases available in the Hibernate 5.2 stream, the time was right to make available a corresponding Hibernate 5.2 runtime provider. This runtime provider incorporates Hibernate Core version 5.2.2.Final and Hibernate Tools version 5.2.0.Beta1.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/hibernate/images/4.4.1.Final/hibernate_5_2.png" alt="hibernate 5 2" width="381"&gt;&lt;/div&gt;
+      &lt;div&gt;Figure 1. Hibernate 5.2 is available&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h5&gt;&lt;a href="#other-runtime-provider-updates" target="_blank"&gt;&lt;/a&gt;Other Runtime Provider Updates&lt;/h5&gt;
+      &lt;div&gt;
+      &lt;p&gt;The Hibernate 4.3 runtime provider now incorporates Hibernate Core version 4.3.11.Final and Hibernate Tools version 4.3.5.Final.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;The Hibernate 5.0 runtime provider now incorporates Hibernate Core version 5.0.10.Final and Hibernate Tools version 5.0.2.Final.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;The Hibernate 5.1 runtime provider now incorporates Hibernate Core version 5.1.1.Final and Hibernate Tools version 5.1.0.CR1.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h3&gt;&lt;a href="#forge-tools" target="_blank"&gt;&lt;/a&gt;Forge Tools&lt;/h3&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#added-install-addon-from-the-catalog-command" target="_blank"&gt;&lt;/a&gt;Added Install addon from the catalog command&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;From Forge 3.3.0.Final onwards it is now possible to query and install addons listed in the &lt;a href="http://forge.jboss.org/addons" target="_blank"&gt;Forge addons page&lt;/a&gt;.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/forge/images/4.4.1.AM3/addon-install-from-catalog.png" alt="addon install from catalog"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#forge-runtime-updated-to-3-3-1-final" target="_blank"&gt;&lt;/a&gt;Forge Runtime updated to 3.3.1.Final&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;The included Forge runtime is now 3.3.1.Final. Read the official announcement &lt;a href="http://forge.jboss.org/news/jboss-forge-3.3.1.final-is-here" target="_blank"&gt;here&lt;/a&gt;.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;img src="http://tools.jboss.org/documentation/whatsnew/forge/images/4.4.1.Final/startup.png" alt="startup"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h3&gt;&lt;a href="#freemarker" target="_blank"&gt;&lt;/a&gt;Freemarker&lt;/h3&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#freemarker-2-3-25" target="_blank"&gt;&lt;/a&gt;Freemarker 2.3.25&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;Freemarker library included in the Freemarker IDE was updated to latest available version 2.3.25.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#flth-fltx-file-extensions-added" target="_blank"&gt;&lt;/a&gt;flth / fltx file extensions added&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;The new flth and fltx extensions have been added and associated with Freemarker IDE. &lt;code&gt;flth&lt;/code&gt; stands for HTML content whereas &lt;code&gt;fltx&lt;/code&gt; stands for XML content.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#overhaul-of-the-plugin-template-parser" target="_blank"&gt;&lt;/a&gt;Overhaul of the plugin template parser&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;The parser that FreeMarker IDE uses to extract IDE-centric information
+      (needed for syntax highlighting, related tag highlighting,
+      auto-completion, outline view, etc.) was overhauled. Several bugs were
+      fixed, and support for the newer template language features were
+      added. Also, the syntax highlighting is now more detailed inside
+      expressions.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#related-tag-background-highlighting-fixed" target="_blank"&gt;&lt;/a&gt;Related tag background highlighting fixed&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;Fixed the issue when the (by default) yellow highlighting of the
+      related FTL tags shift away from under the tag as you type.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#showing-whitespace-block-selection-mode" target="_blank"&gt;&lt;/a&gt;Showing whitespace, block selection mode&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;The standard "Show whitespace characters" and "Toggle block selection
+      mode" icons are now available when editing a template.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#improved-automatic-finishing-of-freemarker-constructs" target="_blank"&gt;&lt;/a&gt;Improved automatic finishing of FreeMarker constructs&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;When you type &lt;code&gt;&amp;lt;#&lt;/code&gt;, &lt;code&gt;&amp;lt;@&lt;/code&gt;, &lt;code&gt;${&lt;/code&gt;, &lt;code&gt;#{&lt;/code&gt; and &lt;code&gt;&amp;lt;#--&lt;/code&gt; the freemarker editor now automatically closes them.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#error-positions-links-on-the-console" target="_blank"&gt;&lt;/a&gt;Error positions links on the console&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;When a FreeMarker exception is printed to the console, the error
+      position in it is a link that navigates to the error. This has worked
+      long ago, but was broken for quite a while.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#fixed-auto-indentation" target="_blank"&gt;&lt;/a&gt;Fixed auto-indentation&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;When hitting enter, sometimes the new line haven&amp;rsquo;t inherited the
+      indentation of the last line.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h4&gt;&lt;a href="#updated-the-database-used-for-auto-completion" target="_blank"&gt;&lt;/a&gt;Updated the "database" used for auto completion&lt;/h4&gt;
+      &lt;div&gt;
+      &lt;p&gt;Auto completion now knows all directives and "built-ins" up to
+      FreeMarker 2.3.25.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;h2&gt;&lt;a href="#what-is-next" target="_blank"&gt;&lt;/a&gt;What is next?&lt;/h2&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+      &lt;p&gt;Having JBoss Tools 4.4.1 and Developer Studio 10.1 out we are already working on the next maintenance release for Eclipse Neon.1.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;Enjoy!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+      &lt;p&gt;Jeff Maury&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;
+&lt;img src="http://feeds.feedburner.com/~r/jbossbuzz/~4/B4sRviAw5zY" height="1" width="1" alt=""/&gt;</content>
+	<updated>2016-12-07T22:09:01+00:00</updated>
+	<author><name>jeffmaury</name></author>
+	<source>
+		<link rel="self" href="http://tools.jboss.org/blog/" />
+		<title>JBoss Tools</title></source>
+
+	<category term="release" />
+
+	<category term="jbosstools" />
+
+	<category term="devstudio" />
+
+	<category term="jbosscentral" />
+
+
+<feedburner:origLink>http://tools.jboss.org/blog/10.2.0.ga-for-neon.1.html</feedburner:origLink></entry>
+
+<entry>
 	<id>https://developer.jboss.org/blogs/weekly-editorial/2016/12/02/this-week-in-jboss-2nd-december-2016</id>
 	<link href="http://feedproxy.google.com/~r/jbossbuzz/~3/CRBqCtWTvRw/this-week-in-jboss-2nd-december-2016" rel="alternate" type="text/html" />
 	<title>This week in JBoss (2nd December 2016)</title>
@@ -920,228 +1679,6 @@
 
 
 <feedburner:origLink>http://tools.jboss.org/blog/am2.4.4.2.neon.html</feedburner:origLink></entry>
-
-<entry>
-	<id>http://tools.jboss.org/blog/am1.4.4.2.neon.html</id>
-	<link href="http://feedproxy.google.com/~r/jbossbuzz/~3/UM3L3lYEes4/am1.4.4.2.neon.html" rel="alternate" type="text/html" />
-	<title>JBoss Tools 4.4.2.AM1 for Eclipse Neon</title>
-	<summary type="html"><![CDATA[
-      <div><div id="preamble">
-      <div class="sectionbody">
-      <div class="paragraph">
-      <p>Happy to announce 4.4.2.AM1 (Developer Milestone 1) build for Eclipse Neon.</p>
-      </div>
-      <div class="paragraph">
-      <p>Downloads available at <a href="http://tools.jboss.org/downloads/jbosstools/neon/4.4.2.AM1.html">JBoss Tools 4.4.2 AM1</a>.</p>
-      </div>
-      </div>
-      </div>
-      <div class="sect1">
-      <h2 id="what-is-new"><a class="anchor" href="#what-is-new"></a>What is New?</h2>
-      <div class="sectionbody">
-      <div class="paragraph">
-      <p>Full info is at <a href="http://tools.jboss.org/documentation/whatsnew/jbosstools/4.4.2.AM1.html">this page</a>. Some highlights are below.</p>
-      </div>
-      <div class="sect2">
-      <h3 id="openshift-3"><a class="anchor" href="#openshift-3"></a>OpenShift 3</h3>
-      <div class="paragraph">
-      <p>Although our main focus is bug fixes, we continue to work on providing better experience for container based development in JBoss Tools and Developer Studio. Let’s go through a few interesting updates here and you can find more details on <a href="http://tools.jboss.org/documentation/whatsnew/jbosstools/4.4.2.AM1.html">the What’s New page</a>.</p>
-      </div>
-      <div class="sect3">
-      <h4 id="cluster-common-namespace"><a class="anchor" href="#cluster-common-namespace"></a>Cluster common namespace</h4>
-      <div class="paragraph">
-      <p>When looking for Openshift resources (builder images, templates), a common namespace is browsed.
-      Earlier hardcoded <code>openshift</code> namespace is now configurable with default value <code>openshift</code>.</p>
-      </div>
-      <div class="admonitionblock warning">
-      <table>
-      <tr>
-      <td class="icon">
-      <i class="fa icon-warning" title="Warning"></i>
-      </td>
-      <td class="content">
-      Please note that templates are still loaded from the <code>òpenshift</code> namespace and not the from configured common namespace, this will be fixed for the next release.
-      </td>
-      </tr>
-      </table>
-      </div>
-      <div class="paragraph">
-      <p>It can be accessed and modified through the connection extended properties:</p>
-      </div>
-      <div class="imageblock">
-      <div class="content">
-      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/connection-extended-properties-namespace.png" alt="Connection extended properties" />
-      </div>
-      </div>
-      </div>
-      </div>
-      <div class="sect2">
-      <h3 id="cdk-server-using-native-terminal-for-better-user-interactions"><a class="anchor" href="#cdk-server-using-native-terminal-for-better-user-interactions"></a>CDK server using native terminal for better user interactions</h3>
-      <div class="paragraph">
-      <p>The CDK server adapter now uses a native terminal that allows better interaction with the user.
-      In the case credentials are not passed in the Vagrant environment, the user will be asked just as with
-      the standard Vagrant CLI and in case of registration failures, retries will be performed.</p>
-      </div>
-      <div class="paragraph">
-      <p>First, make sure your CDK server adapter is configured not to pass credentials:</p>
-      </div>
-      <div class="imageblock">
-      <div class="content">
-      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-editor-no-credentials-pass.png" alt="CDK editor" />
-      </div>
-      </div>
-      <div class="paragraph">
-      <p>Then, start the CDK server adapter and a new terminal window will open, asking for registration:</p>
-      </div>
-      <div class="imageblock">
-      <div class="content">
-      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-registration.png" alt="Registration" />
-      </div>
-      </div>
-      <div class="paragraph">
-      <p>If you answered <code>y</code> to the previous questions, then the terminal window will ask for username:</p>
-      </div>
-      <div class="imageblock">
-      <div class="content">
-      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-username.png" alt="Username" />
-      </div>
-      </div>
-      <div class="paragraph">
-      <p>Then the terminal window will ask for password:</p>
-      </div>
-      <div class="imageblock">
-      <div class="content">
-      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-password.png" alt="Password" />
-      </div>
-      </div>
-      <div class="paragraph">
-      <p>If the registration fails, then the terminal window will perform retries and ask again for username and password:</p>
-      </div>
-      <div class="imageblock">
-      <div class="content">
-      <img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-password2.png" alt="Password" />
-      </div>
-      </div>
-      <div class="paragraph">
-      <p>Enjoy!</p>
-      </div>
-      <div class="paragraph">
-      <p>Jeff Maury</p>
-      </div>
-      </div>
-      </div>
-      </div></div>
-    ]]></summary>
-	<content type="html">&lt;html&gt;&lt;body&gt;&lt;div&gt;&lt;div&gt;
-      &lt;div&gt;
-      &lt;div&gt;
-      &lt;p&gt;Happy to announce 4.4.2.AM1 (Developer Milestone 1) build for Eclipse Neon.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;p&gt;Downloads available at &lt;a href="http://tools.jboss.org/downloads/jbosstools/neon/4.4.2.AM1.html" target="_blank"&gt;JBoss Tools 4.4.2 AM1&lt;/a&gt;.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;h2&gt;&lt;a href="#what-is-new" target="_blank"&gt;&lt;/a&gt;What is New?&lt;/h2&gt;
-      &lt;div&gt;
-      &lt;div&gt;
-      &lt;p&gt;Full info is at &lt;a href="http://tools.jboss.org/documentation/whatsnew/jbosstools/4.4.2.AM1.html" target="_blank"&gt;this page&lt;/a&gt;. Some highlights are below.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;h3&gt;&lt;a href="#openshift-3" target="_blank"&gt;&lt;/a&gt;OpenShift 3&lt;/h3&gt;
-      &lt;div&gt;
-      &lt;p&gt;Although our main focus is bug fixes, we continue to work on providing better experience for container based development in JBoss Tools and Developer Studio. Let&amp;rsquo;s go through a few interesting updates here and you can find more details on &lt;a href="http://tools.jboss.org/documentation/whatsnew/jbosstools/4.4.2.AM1.html" target="_blank"&gt;the What&amp;rsquo;s New page&lt;/a&gt;.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;h4&gt;&lt;a href="#cluster-common-namespace" target="_blank"&gt;&lt;/a&gt;Cluster common namespace&lt;/h4&gt;
-      &lt;div&gt;
-      &lt;p&gt;When looking for Openshift resources (builder images, templates), a common namespace is browsed.
-      Earlier hardcoded &lt;code&gt;openshift&lt;/code&gt; namespace is now configurable with default value &lt;code&gt;openshift&lt;/code&gt;.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;table&gt;&lt;tr&gt;&lt;td&gt;
-      &lt;i title="Warning"&gt;&lt;/i&gt;
-      &lt;/td&gt;
-      &lt;td&gt;
-      Please note that templates are still loaded from the &lt;code&gt;&amp;ograve;penshift&lt;/code&gt; namespace and not the from configured common namespace, this will be fixed for the next release.
-      &lt;/td&gt;
-      &lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-      &lt;div&gt;
-      &lt;p&gt;It can be accessed and modified through the connection extended properties:&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;div&gt;
-      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/connection-extended-properties-namespace.png" alt="Connection extended properties"&gt;&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;h3&gt;&lt;a href="#cdk-server-using-native-terminal-for-better-user-interactions" target="_blank"&gt;&lt;/a&gt;CDK server using native terminal for better user interactions&lt;/h3&gt;
-      &lt;div&gt;
-      &lt;p&gt;The CDK server adapter now uses a native terminal that allows better interaction with the user.
-      In the case credentials are not passed in the Vagrant environment, the user will be asked just as with
-      the standard Vagrant CLI and in case of registration failures, retries will be performed.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;p&gt;First, make sure your CDK server adapter is configured not to pass credentials:&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;div&gt;
-      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-editor-no-credentials-pass.png" alt="CDK editor"&gt;&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;p&gt;Then, start the CDK server adapter and a new terminal window will open, asking for registration:&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;div&gt;
-      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-registration.png" alt="Registration"&gt;&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;p&gt;If you answered &lt;code&gt;y&lt;/code&gt; to the previous questions, then the terminal window will ask for username:&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;div&gt;
-      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-username.png" alt="Username"&gt;&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;p&gt;Then the terminal window will ask for password:&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;div&gt;
-      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-password.png" alt="Password"&gt;&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;p&gt;If the registration fails, then the terminal window will perform retries and ask again for username and password:&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;div&gt;
-      &lt;img src="http://tools.jboss.org/documentation/whatsnew/openshift/images/cdk-terminal-asks-for-password2.png" alt="Password"&gt;&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;p&gt;Enjoy!&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-      &lt;p&gt;Jeff Maury&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;img src="http://feeds.feedburner.com/~r/jbossbuzz/~4/UM3L3lYEes4" height="1" width="1" alt=""/&gt;</content>
-	<updated>2016-10-18T23:25:39+00:00</updated>
-	<author><name>jeffmaury</name></author>
-	<source>
-		<link rel="self" href="http://tools.jboss.org/blog/" />
-		<title>JBoss Tools</title></source>
-
-	<category term="release" />
-
-	<category term="jbosstools" />
-
-	<category term="jbosscentral" />
-
-
-<feedburner:origLink>http://tools.jboss.org/blog/am1.4.4.2.neon.html</feedburner:origLink></entry>
 
 
 </feed><!-- vim:ft=xml

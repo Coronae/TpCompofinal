@@ -59,6 +59,7 @@ public class ConnexionServlet extends HttpServlet {
      */
     protected void doGet( HttpServletRequest request, HttpServletResponse response )
             throws ServletException, IOException {
+        doPost( request, response );
     }
 
     /**
@@ -69,9 +70,9 @@ public class ConnexionServlet extends HttpServlet {
             throws ServletException, IOException {
 
         userBuilder = new UserBuilder();
+        String email = request.getParameter( userBuilder.CHAMP_EMAIL );
 
-        client = clientManagerRemote.getClientFromEmail(
-                request.getParameter( UserBuilder.CHAMP_EMAIL ) );
+        client = clientManagerRemote.getClientFromEmail( email );
         user = userBuilder.createUser( request, client, encryptorRemote );
 
         if ( userBuilder.getErreurs().isEmpty() ) {
@@ -82,8 +83,8 @@ public class ConnexionServlet extends HttpServlet {
                     request, response );
 
         } else {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append( request.getContextPath() ).append( VUE_ECHEC );
+            StringBuilder urlRedirect = new StringBuilder();
+            urlRedirect.append( request.getContextPath() ).append( VUE_ECHEC );
 
             client = new Client();
             client.setEmail( request.getParameter( UserBuilder.CHAMP_EMAIL ) );

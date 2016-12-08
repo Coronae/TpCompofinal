@@ -16,7 +16,7 @@ import remote.ClientManagerRemote;
 @LocalBean
 public class ClientManager implements ClientManagerRemote {
 
-    final static String SELECT_QUERY = "SELECT c FROM CLIENTS as ";
+    final static String SELECT_QUERY = "SELECT c FROM Client WHERE ";
 
     @PersistenceContext( unitName = "BD_ECommerce" )
     EntityManager       em;
@@ -44,19 +44,12 @@ public class ClientManager implements ClientManagerRemote {
 
     @Override
     public Client getClientFromEmail( String email ) {
-        StringBuilder sbQuery = new StringBuilder( SELECT_QUERY );
-        Query query;
-        Client client = null;
-        if ( email != null ) {
-            try {
-                query = em.createQuery( sbQuery.append( "c.email = " ).append( email ).toString() );
-                client = (Client) query.getSingleResult();
-            } catch ( Exception e ) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-        return client;
+
+        Query query = em.createNamedQuery( "Client.findByEmail" ).setParameter( "email", email );
+        if ( query.getResultList().isEmpty() )
+            return null;
+        else
+            return (Client) query.getSingleResult();
     }
 
     @Override

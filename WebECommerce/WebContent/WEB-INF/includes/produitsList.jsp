@@ -10,7 +10,7 @@
 			<h1>${item.designation}</h1>
 			<h3>${item.categorie}</h3>
 			<p>${item.description}</p>
-			<a class="btn btn-warning btn-block" name="${item.ID}" id="${item.ID}">Ajouter au panier</a>
+			<a class="btn btn-warning btn-block" name="<c:out value="${item.ID}"/>" id="<c:out value="${item.ID}"/>">Ajouter au panier</a>
 		</div>
 	</div>
 </c:forEach>
